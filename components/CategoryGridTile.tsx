@@ -4,16 +4,22 @@ import React, {FC} from 'react';
 type CategoryGridTileProps = {
   title: string;
   color: string;
+  onPressContainer: () => void;
 };
 
-const CategoryGridTile: FC<CategoryGridTileProps> = ({color, title}) => {
+const CategoryGridTile: FC<CategoryGridTileProps> = ({
+  color,
+  title,
+  onPressContainer,
+}) => {
   return (
     <View style={styles.rootContainer}>
       <Pressable
         style={({pressed}) => [
           styles.button,
           pressed ? styles.buttonPressed : undefined,
-        ]}>
+        ]}
+        onPress={onPressContainer}>
         <View style={[styles.container, {backgroundColor: color}]}>
           <Text style={styles.title}>{title}</Text>
         </View>

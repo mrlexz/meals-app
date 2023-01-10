@@ -1,30 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import {useColorScheme, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import CategoriesScreen from './screens/CategoriesScreen';
+import Navigation from './navigations';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-      }}>
-      <CategoriesScreen />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
