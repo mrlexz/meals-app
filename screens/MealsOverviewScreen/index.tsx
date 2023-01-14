@@ -1,17 +1,28 @@
-import React, {FC} from 'react';
+import React, {FC, useLayoutEffect} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {MealsOverviewScreenProps} from '../../navigations/type';
-import {MEALS} from '../../data/dummy-data';
+import {CATEGORIES, MEALS} from '../../data/dummy-data';
 import MealItem from './components/MealItem';
 import {MealT} from '../../models/meal';
 
-const MealsOverviewScreen: FC<MealsOverviewScreenProps> = ({route}) => {
+const MealsOverviewScreen: FC<MealsOverviewScreenProps> = ({
+  route,
+  navigation,
+}) => {
   const {categoryId} = route.params;
 
   const meals = MEALS.filter(meal => meal.categoryIds.includes(categoryId));
 
+  useLayoutEffect(() => {
+    const categoryTitle = CATEGORIES.find(c => c.id === categoryId)?.title;
+
+    navigation.setOptions({
+      title: categoryTitle,
+    });
+  }, [categoryId, navigation]);
+
   const renderMealItem = (mealItem: MealT) => {
-    return <MealItem title={mealItem.title} />;
+    return <MealItem mealItem={mealItem} />;
   };
   return (
     <View style={styles.container}>
